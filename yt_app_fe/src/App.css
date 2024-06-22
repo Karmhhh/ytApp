@@ -1,0 +1,16 @@
+.App {
+}
+
+.App-header {
+  background-color: #282c34;
+  color:aliceblue;
+  font-size: xx-large;
+  font-weight: bold;
+  padding: 1rem;
+  min-height: 5vh;
+}
+
+.App-link {
+  color: #61dafb;
+}
+

@@ -1,3 +1,54 @@
+// In this file you can include the rest of your app's specific main process
+// code. You can also put them in separate files and require them here.
+const { app, BrowserWindow } = require("electron");
+const { exec } = require("child_process");
+const path = require("path");
+
+let mainWindow;
+
+function createWindow() {
+  mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      nodeIntegration: true,
+    },
+  });
+
+  mainWindow.loadURL("yt_app_fe/public/index.html");
+
+  mainWindow.on("closed", function () {
+    mainWindow = null;
+  });
+}
+
+app.on("ready", () => {
+  const scriptPath = path.join(__dirname, "yt_dw_App/app.py");
+  exec(`venv/Scripts/activate`)
+  exec(`fastapi dev ${scriptPath}`, (err, stdout, stderr) => {
+    if (err) {
+      console.error(`Error starting backend: ${err}`);
+      return;
+    }
+    console.log(`Backend started: ${stdout}`);
+  });
+
+  createWindow();
+});
+
+app.on("window-all-closed", function () {
+  if (process.platform !== "darwin") {
+    app.quit();
+  }
+});
+
+app.on("activate", function () {
+  if (mainWindow === null) {
+    createWindow();
+  }
+});
+
+/*
 const { app, BrowserWindow } = require("electron");
 const { exec } = require("child_process");
 const path = require("path"); // Importa il modulo path
@@ -60,6 +111,4 @@ app.on("activate", () => {
     createWindow();
   }
 });
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
+ */

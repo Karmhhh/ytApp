@@ -14,7 +14,6 @@ import { StepperPanel } from 'primereact/stepperpanel';
 import { Splitter, SplitterPanel } from 'primereact/splitter';
 import { DataScroller } from 'primereact/datascroller';
 import { Tag } from 'primereact/tag';
-//Todo: farla girare in electron.
 
 function App() {
   const toast = useRef(null);

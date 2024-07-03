@@ -1,8 +1,13 @@
 ## Start python
-1. venv\Scripts\activate //Attiva Envairoment
-2. pip install requests //Installa pacchetti
-3. fastapi dev app.py //Avvia il BackEnd
+###  Attiva Envairoment
+1. venv\Scripts\activate
+### Installa pacchetti
+3. pip install requests
+### Avvia il BackEnd
+5. fastapi dev app.py 
 
-## Start React
-1. npm i //installa pacchetti
-2. npm start
+## Start React 
+### Installa pacchetti
+1. npm i
+### Starta il Frontend
+3. npm start 

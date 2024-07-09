@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.2",
     "electron": "^31.1.0",
+    "primeflex": "^3.3.1",
     "primereact": "^10.6.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -21,7 +22,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "electron-dev": "electron .",
-    "start-all" : "concurrently \"electron .\" \"npm run start\""
+    "start-all": "concurrently \"electron .\" \"npm run start\""
   },
   "config": {
     "backendUrl": "http://localhost:8000"

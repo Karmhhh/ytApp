@@ -103,6 +103,6 @@ async def download_video():
             except Exception as e:
                 logging.error(f"Error downloading {item.get('title')}: {e}")
         arrayVideos.clear()
-        return {"message": "Download completato."}
+        return {"message": "Download completed."}
     else:
-        raise HTTPException(status_code=404, detail="Nessun video caricato.")
+        raise HTTPException(status_code=404, detail="No videos uploaded.")

@@ -30,23 +30,22 @@ function App() {
     try {
       const response = await axios.get(urlDestination);
 
-        setlistVideos([]);
-        toast.current.show({
-          severity: "success",
-          summary: "Success",
-          detail: `${response.data.message}`,
-          life: 3000,
-        });
- 
+      setlistVideos([]);
+      toast.current.show({
+        severity: "success",
+        summary: "Success",
+        detail: `${response.data.message}`,
+        life: 3000,
+      });
     } catch (error) {
-    
-        console.error(error); toast.current.show({
-          severity: "error",
-          summary: "Error",
-          detail: `${error.response.data.detail}`,
-          life: 3000,
-        });
-      }
+      console.error(error);
+      toast.current.show({
+        severity: "error",
+        summary: "Error",
+        detail: `${error.response.data.detail}`,
+        life: 3000,
+      });
+    }
   };
   const stepperRef = useRef(null);
   const [listVideos, setlistVideos] = useState([]);
@@ -61,7 +60,11 @@ function App() {
           justifyContent: "space-between",
         }}
       >
-        <div className="col-10 grid ">
+        <img
+          className="col-2"
+          src={data.thumbnail_url}
+        ></img>
+        <div className="col-8 grid ">
           <h4 className="col-12">
             <i>{data.title}</i>
           </h4>
@@ -91,7 +94,8 @@ function App() {
                       summary: "Success",
                       detail: `${resp.data.message}`,
                       life: 3000,
-                    }),fetchData()
+                    }),
+                  fetchData()
                 )
             }
           />
@@ -99,17 +103,16 @@ function App() {
       </div>
     );
   };
- async function fetchData() {
-      try {
-        await axios
-          .get("http://127.0.0.1:8000/videos")
-          .then((resp) => setlistVideos(resp.data));
-      } catch (error) {
-        console.log(error.message);
-      }
+  async function fetchData() {
+    try {
+      await axios
+        .get("http://127.0.0.1:8000/videos")
+        .then((resp) => setlistVideos(resp.data));
+    } catch (error) {
+      console.log(error.message);
     }
+  }
   useEffect(() => {
-   
     fetchData();
   }, []);
   return (
@@ -170,20 +173,20 @@ function App() {
                   label="Upload"
                   icon="pi pi-upload"
                   iconPos="right"
-                  onClick={async () => url!=="" && selectedOption !== null ?
-                    await axios
-                      .post("http://127.0.0.1:8000/uploadVideo", {
-                        video_url: url,
-                        ex: selectedOption.code,
-                      })
-                      .then((resp) => setlistVideos(resp.data), setUrl("")): (
-                         toast.current.show({
+                  onClick={async () =>
+                    url !== "" && selectedOption !== null
+                      ? await axios
+                          .post("http://127.0.0.1:8000/uploadVideo", {
+                            video_url: url,
+                            ex: selectedOption.code,
+                          })
+                          .then((resp) => setlistVideos(resp.data), setUrl(""))
+                      : toast.current.show({
                           severity: "error",
                           summary: "Error",
                           detail: `No Url or Format detected, Please fill the field.`,
                           life: 3000,
                         })
-                      )
                   }
                 />
               </div>
@@ -269,20 +272,23 @@ function App() {
                           label="Upload"
                           icon="pi pi-upload"
                           iconPos="right"
-                          onClick={async () => url!=="" && selectedOption !== null ?
-                            await axios
-                              .post("http://127.0.0.1:8000/uploadVideo", {
-                                video_url: url,
-                                ex: selectedOption.code,
-                              })
-                              .then((resp) => setlistVideos(resp.data), setUrl("")): (
-                                 toast.current.show({
+                          onClick={async () =>
+                            url !== "" && selectedOption !== null
+                              ? await axios
+                                  .post("http://127.0.0.1:8000/uploadVideo", {
+                                    video_url: url,
+                                    ex: selectedOption.code,
+                                  })
+                                  .then(
+                                    (resp) => setlistVideos(resp.data),
+                                    setUrl("")
+                                  )
+                              : toast.current.show({
                                   severity: "error",
                                   summary: "Error",
                                   detail: `No Url or Format detected, Please fill the field.`,
                                   life: 3000,
                                 })
-                              )
                           }
                         />
                       </div>
